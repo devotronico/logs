@@ -10,7 +10,8 @@
 
 // $dir = ".git";
 // $dir = ".git/logs/refs/heads";
-$dir = ".git/refs/heads/master";
+// $dir = ".git/refs/heads/master";
+$dir = ".git/logs/refs/heads";
 // $dir = "C:\xampp_8\htdocs\workspace\CHANGELOG\.git\COMMIT_EDITMSG";
 // $dir = "/path/to/your/repo/";
 
@@ -42,7 +43,7 @@ $commit = [
 function parseLog($log) {
     $history = array();
     foreach($log as $key => $line) {
-        if(strpos($line, 'commit') === 0 || $key + 1 == count($lines)){
+        if(strpos($line, 'commit') === 0 || $key + 1 == count($log)) {
             $commit['hash'] = substr($line, strlen('commit') + 1);
         } else if(strpos($line, 'Author') === 0){
             $commit['author'] = substr($line, strlen('Author:') + 1);
@@ -64,31 +65,22 @@ function parseLog($log) {
 $history = parseLog($output);
 
 
-
-
-// foreach($output as $line){
-//     if(strpos($line, 'commit') === 0){
-//         echo '1 <br>';
-//         if(!empty($commit)){
-//             array_push($history, $commit);
-//             // unset($commit);
-//         }
-//         $commit['hash'] = substr($line, strlen('commit'));
-//     } else if(strpos($line, 'Author')===0){
-//         echo '2 <br>';
-// 	    $commit['author'] = substr($line, strlen('Author:'));
-//     } else if(strpos($line, 'Date')===0){
-//         echo '3 <br>';
-// 	    $commit['date']   = substr($line, strlen('Date:'));
-//     } else{
-//         echo '4 <br>';
-// 	    $commit['message']  .= $line;
-//     }
-// }
-
 echo '<pre>';
 print_r($history);
 echo '</pre>';
+
+
+foreach ($history as $key => $arr) {
+    echo '<div>';
+    foreach ($arr as $k => $value) {
+        echo '<p><span>' . $k . ': </span><span>' . $value . '</span></p>';
+    }
+    echo '</div>';
+    echo '<hr>';
+}
+
+
+
 // print_r($history);
 
 ?>
