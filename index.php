@@ -1,31 +1,23 @@
 <?php
-// Author: Ngo Minh Nam
+header('Content-type: application/json');
 
-// $dir = "/.git/logs/";
-// $dir = "C:\xampp_8\htdocs\workspace\CHANGELOG\.git\logs\refs\heads\master";
-// $dir = "C:\xampp_8\htdocs\workspace\CHANGELOG\.git\logs\HEAD";
-// $dir = "C:\xampp_8\htdocs\workspace\CHANGELOG\.git\objects";
-// $dir = "C:\xampp_8\htdocs\workspace\CHANGELOG\.git\index";
-// $dir = ".git/COMMIT_EDITMSG";
 
-// $dir = ".git";
+
+die(json_encode(['test'=> 'OK 1']));
+
+
 // $dir = ".git/logs/refs/heads";
 // $dir = ".git/refs/heads/master";
 $dir = ".git/logs/refs/heads";
 // $dir = "C:\xampp_8\htdocs\workspace\CHANGELOG\.git\COMMIT_EDITMSG";
 // $dir = "/path/to/your/repo/";
 
-if (!is_dir($dir)) {
-    echo "La cartella $dir NON esiste";
-} else {
-    echo "La cartella $dir esiste";
-}
-echo '<br>';
-// if (file_exists($dir)) {
-//     echo "The file $dir exists";
+// if (!is_dir($dir)) {
+//     echo "La cartella $dir NON esiste";
 // } else {
-//     echo "The file $dir does not exist";
+//     echo "La cartella $dir esiste";
 // }
+// echo '<br>';
 
 $output = array();
 chdir($dir);
@@ -37,8 +29,6 @@ $commit = [
     'date' => '',
     'message' => ''
 ];
-
-
 
 function parseLog($log) {
     $history = array();
@@ -63,24 +53,22 @@ function parseLog($log) {
 
 
 $history = parseLog($output);
+die(json_encode($history));
 
 
-echo '<pre>';
-print_r($history);
-echo '</pre>';
-
-
-foreach ($history as $key => $arr) {
-    echo '<div>';
-    foreach ($arr as $k => $value) {
-        echo '<p><span>' . $k . ': </span><span>' . $value . '</span></p>';
-    }
-    echo '</div>';
-    echo '<hr>';
-}
-
-
-
+// echo '<pre>';
 // print_r($history);
+// echo '</pre>';
 
-?>
+
+// foreach ($history as $key => $arr) {
+//     echo '<div>';
+//     foreach ($arr as $k => $value) {
+//         echo '<p><span>' . $k . ': </span><span>' . $value . '</span></p>';
+//     }
+//     echo '</div>';
+//     echo '<hr>';
+// }
+
+
+
