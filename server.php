@@ -23,12 +23,6 @@ $output = array();
 chdir($dir);
 exec("git log",$output);
 $history = array();
-$commit = [
-    'hash' => '',
-    'author' => '',
-    'date' => '',
-    'message' => ''
-];
 
 function parseLog($log) {
     $history = array();
